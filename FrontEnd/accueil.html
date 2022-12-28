@@ -20,26 +20,48 @@
   </head>
 
   <body>
-
     <nav id="nav-admin" class="display-none">
-      <button id="btn-edit"><i class="fa-regular fa-pen-to-square"></i>Mode édtion</button>
-      <button id="btn-publish-changes"><a href="./accueil.html">publier les changements</a></button>
+      <button id="btn-edit">
+        <i class="fa-regular fa-pen-to-square"></i>Mode édtion
+      </button>
+      <button id="btn-publish-changes">
+        <a href="./accueil.html">publier les changements</a>
+      </button>
     </nav>
 
-
-    <div class="div-hidden-body display-none">
-    </div>
-
-
+    <div class="div-hidden-body display-none"></div>
 
     <header>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
         <ul>
-          <li><a href="./accueil.html" title="Aller à la page principale contenant mes projets">projets</a></li>
-          <li><a href="#contact" title="Me contacter via un formulaire">contact</a></li>
-          <li><a class="login-logout-link" href="./login.html" title="Vous connectez en tant qu'administrateur pour ajouter ou supprimer des projets">login</a></li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          <li>
+            <a
+              href="./accueil.html"
+              title="Aller à la page principale contenant mes projets"
+              >projets</a
+            >
+          </li>
+          <li>
+            <a href="#contact" title="Me contacter via un formulaire"
+              >contact</a
+            >
+          </li>
+          <li>
+            <a
+              class="login-logout-link"
+              href="./login.html"
+              title="Se rendre à la page connexion pour l'administrateur"
+              >login</a
+            >
+          </li>
+          <li>
+            <img
+              src="./assets/icons/instagram.png"
+              alt="Instagram"
+              title="Aller sur ma page instagram"
+            />
+          </li>
         </ul>
       </nav>
     </header>
@@ -76,8 +98,6 @@
             ><i class="fa-regular fa-pen-to-square"></i>Cliquez ici
           </span>
         </h2>
-
-        <!-- /////  MODALE DEBUT -->
 
         <div id="modal">
           <div class="div-header-modal-btns">
@@ -139,9 +159,7 @@
               <label for="category-postform">Catégorie</label>
 
               <div class="div-select">
-                <select name="category" id="category-postform">
-
-                </select>
+                <select name="category" id="category-postform"></select>
                 <div class="icon-select-arrow">
                   <img src="./assets/icons/arrow-down.svg" alt="" />
                 </div>
@@ -160,8 +178,6 @@
           </div>
         </div>
 
-        <!-- /////  MODALE FIN -->
-
         <div class="div-search"></div>
 
         <div class="gallery"></div>
@@ -172,9 +188,9 @@
         <p>Vous avez un projet ? Discutons-en !</p>
         <form action="#" method="post">
           <label for="name">Nom</label>
-          <input type="text" name="name" id="name" maxlength="50"/>
+          <input type="text" name="name" id="name" maxlength="50" />
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" maxlength="50"/>
+          <input type="email" name="email" id="email" maxlength="50" />
           <label for="message">Message</label>
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
           <input type="submit" value="Envoyer" />
@@ -189,7 +205,6 @@
         </ul>
       </nav>
     </footer>
-
 
     <script src="./jwt-decode.js"></script>
     <script src="./main.js"></script>

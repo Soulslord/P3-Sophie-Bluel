@@ -35,21 +35,13 @@ imgDataForm.addEventListener("change", () => readURL(imgDataForm));
 
 
 function readURL(input) {
-  console.log("readurl appelé");
-
-  console.log(input);
-  console.log(input.files[0]);
 
   if (input.files && input.files[0]) {
     var reader = new FileReader();
-    console.log(reader);
 
     reader.onload = function (e) {
-      console.log(e.target);
       const dataImgToPost = e.target.result;
       imgToDisplay.src = dataImgToPost;
-      console.log(e.target.result);
-      console.log(reader);
       imgToDisplay.classList.add("img-h100-abs");
     };
     reader.readAsDataURL(input.files[0]);
@@ -65,10 +57,6 @@ const allInputs = document.querySelectorAll(
 
 allInputs.forEach((input) => {
   input.addEventListener("input", () => {
-    console.log(input);
-    console.log(input.value);
-    console.log(allInputs[1].value.length);
-    console.log(allInputs[2].value.length);
 
     if (
       allInputs[0].value.length > 0 &&
@@ -84,21 +72,11 @@ allInputs.forEach((input) => {
 
 formAddProject.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log(e.target);
 
-  console.log(imgDataForm);
-
-  const urlToTest = imgDataForm.files[0];
   const urlToPost = imgDataForm.files[0];
-  const imgDataFormValToPost = imgToDisplay.src;
 
   const titleDataFormVal = titleDataForm.value;
   const categoryDataFormVal = categoryDataForm.value;
-  const categoryDataFormTxt = categoryDataForm.options[categoryDataForm.selectedIndex].text;
-
-  console.log("formulaire envoyé");
-
-  console.log(imgDataFormValToPost);
 
   callForm(urlToPost, titleDataFormVal, categoryDataFormVal);
 });
@@ -125,8 +103,6 @@ function callForm(file, title, categoryVal) {
 
 
       setTimeout(() => {
-        console.log(data.imageUrl);
-        console.log(data.title);
 
         divInsideModalPost.classList.add("display-none");
         divInsideModalDelete.classList.remove("display-none");
@@ -147,7 +123,6 @@ function callForm(file, title, categoryVal) {
     })
 
     .catch((err) => {
-      console.log(err);
       responsePostRequest.textContent =
         "Erreur dans l'envoie de données, vérifier que vous êtes bien connecté en tant qu'administrateur";
       responsePostRequest.style.color = "red";

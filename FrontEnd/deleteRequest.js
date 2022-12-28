@@ -1,5 +1,3 @@
-
-
 modalGallery.addEventListener('click', (e) => {
   console.log(e.target);
   if(e.target.className === "btn-delete") {
@@ -10,12 +8,7 @@ modalGallery.addEventListener('click', (e) => {
   }
 });
 
-
 function deleteData(modalCardDel, indexCardDel) {
-
-  console.log(modalCardDel);
-  console.log(indexCardDel);
-
   fetch(`http://localhost:5678/api/works/${indexCardDel}`, {
     method: "DELETE",
     headers: {
@@ -24,11 +17,7 @@ function deleteData(modalCardDel, indexCardDel) {
     },
   })
     .then((response) => {
-      console.log(response);
-      console.log(response.ok);
-
       const figurePortfolio = document.querySelectorAll(".figure-portfolio");
-
       if (!response.ok) {
         alert(
           "Vous n'êtes pas autorisé à supprimer un élément, si vous avez les droits, veuillez vous reconnnecter s'il vous plaît."
@@ -38,13 +27,9 @@ function deleteData(modalCardDel, indexCardDel) {
         );
       } else {
         console.log("requête supprimé effectuée");
-
-        //Une autre solution est d'appeler mon API, qui appelle les fonctions createCards() et createModalCards() qui suppriment les anciennnes données avec un innertHTML = ""; et recréer mes cards avec un nouvel appel API ;
-        
+        //Une autre solution est d'appeler mon API, qui appelle les fonctions createCards() et createModalCards() qui suppriment les anciennnes données avec un innertHTML = ""; et recréent mes cards avec un nouvel appel API ;
         // appelApi1();
-
         modalCardDel.remove();
-
         figurePortfolio.forEach((elem) => {
           if (parseInt(elem.getAttribute("index")) === indexCardDel) {
             elem.remove();

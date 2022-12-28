@@ -8,12 +8,12 @@ const token = localStorage.getItem("token Sophie Bluel");
 const modalGallery = document.querySelector(".div-gallery-modal");
 const navAdmin = document.querySelector("#nav-admin");
 const btnEditAdmin = document.querySelector("#btn-edit");
+const loginLogoutLink = document.querySelector(".login-logout-link");
 
 // date de validité de mon token pour faire apparaître ou non les fonctionnalités d'admin
 if (token) {
   var tokenData = jwt_decode(token);
   var tokenExpiracy = tokenData.exp - Date.now() / 1000;
-  console.log(tokenExpiracy);
 }
 
 let urlGet = "http://localhost:5678/api/works";
@@ -25,7 +25,6 @@ function appelApi1() {
   fetch(urlGet)
     .then((response) =>
       response.json().then((data) => {
-        console.log(data);
         createCards(data);
         createModalCards(data);
       })
@@ -36,9 +35,10 @@ function appelApi1() {
 }
 
 function createCards(values) {
+  //ancien code, une solution potentiel est aussi de refaire un appel API
+  // pour créer les cards , en supprimant l'ancien HTML (pour ne pas recréer toutes les cartes)
   // gallery.innerHTML = "";
   values.map((val) => {
-    console.log(val.category);
     let galleryCard = document.createElement("figure");
     galleryCard.setAttribute("index", val.id);
     galleryCard.setAttribute("category-id", val.category.id);
@@ -77,7 +77,6 @@ function fetchCategories(url) {
 
 
 function createCatBtns(arrayCategories) {
-  console.log(arrayCategories);
   arrayCategories.map((elem) => {
     let btnCat = document.createElement("button");
     btnCat.value = elem.id;
@@ -87,7 +86,6 @@ function createCatBtns(arrayCategories) {
     
     if (btnCat.value == 0) {
       btnCat.classList.add("active-cat");
-      console.log("oui");
     }
     btnCat.addEventListener("click", () => {
       filterFromCards(btnCat);
@@ -96,7 +94,6 @@ function createCatBtns(arrayCategories) {
 }
 
 function createSelectCat(values) {
-  console.log(values);
   values.map((val) => {
     let selectDomOption = document.createElement("option");
     selectDomOption.textContent = val.name;
@@ -157,10 +154,18 @@ modalDiv.addEventListener("click", (e) => {
 if (token && tokenExpiracy >= 0) {
   btnShowModal.classList.remove("display-none");
   navAdmin.style.display = "flex";
+  loginLogoutLink.innerHTML = "logout";
+
+  loginLogoutLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    location.reload();
+    localStorage.removeItem("token Sophie Bluel")
+  })
+  
 } else {
-  console.log("token error");
   btnShowModal.classList.add("display-none");
   navAdmin.style.display = "none";
+  loginLogoutLink.innerHTML = "login";
 }
 
 openModal.forEach((el) => {
@@ -169,14 +174,12 @@ openModal.forEach((el) => {
     modalDiv.style.visibility = "visible";
 
     divHiddenBody.classList.remove("display-none");
-    console.log(divHiddenBody);
   });
 });
 
 let selectionnedCatVal = 0;
 
 function filterFromCards(btnCat) {
-  console.log(btnCat);
   const btnCatValue = parseInt(btnCat.value);
   selectionnedCatVal = btnCatValue;
 
@@ -195,7 +198,6 @@ function filterFromCards(btnCat) {
 
 function filterFinal() {
   let figurePortfolio2 = document.querySelectorAll(".figure-portfolio");
-  console.log(figurePortfolio2);
 
   // J'ai utilisé cette méthode plutôt que filter() car filter ne fonctionne pas avec une nodeList
   figurePortfolio2.forEach((elem) => {

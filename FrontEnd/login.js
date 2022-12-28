@@ -8,6 +8,7 @@ function sendFormConnexion(e) {
   e.preventDefault();
   let emailValue = document.querySelector("#email").value;
   let passwordValue = document.querySelector("#password").value;
+  console.log(passwordValue);
   let user = {
     email: emailValue,
     password: passwordValue,
